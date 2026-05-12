@@ -1,0 +1,35 @@
+{
+  "name": "@shatyuka/opencode-codebuddy-auth",
+  "version": "1.0.0",
+  "description": "Tencent CodeBuddy auth plugin for OpenCode",
+  "author": "shatyuka",
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "plugin",
+    "auth",
+    "tencent",
+    "codebuddy"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target node"
+  },
+  "devDependencies": {
+    "@types/node": "^24.12.3",
+    "@opencode-ai/plugin": "^1.14.48",
+    "@types/proper-lockfile": "^4.1.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "proper-lockfile": "^4.1.2"
+  }
+}
