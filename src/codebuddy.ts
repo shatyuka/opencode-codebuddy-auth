@@ -1,4 +1,4 @@
-import { CODEBUDDY_ENDPOINT, CODEBUDDY_PLATFORM, CODEBUDDY_IDE_VERSION } from './constants.js'
+import { CODEBUDDY_ENDPOINT, CODEBUDDY_IDE_VERSION } from './constants.js'
 
 interface ResponseBase {
   code: number;
@@ -62,7 +62,7 @@ function delay(ms: number) {
 
 export async function requestAuthState() {
   const response = await fetch(
-    `${CODEBUDDY_ENDPOINT}/v2/plugin/auth/state?platform=${CODEBUDDY_PLATFORM}`,
+    `${CODEBUDDY_ENDPOINT}/v2/plugin/auth/state?platform=CLI`,
     {
       method: 'POST',
       headers: {

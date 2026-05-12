@@ -1,6 +1,6 @@
 import type { Plugin, Hooks, Config } from '@opencode-ai/plugin';
 import { requestAuthState, getAuthToken, getLoginAccount, refreshAccessToken, getConfig } from './codebuddy.js'
-import { CODEBUDDY_ENDPOINT, CODEBUDDY_PROVIDER } from './constants.js';
+import { CODEBUDDY_ENDPOINT, CODEBUDDY_PROVIDER, CODEBUDDY_CLI_VERSION } from './constants.js';
 import { loadStorage, saveStorage } from './storage.js';
 
 export const CodeBuddyAuthPlugin: Plugin = async (input) => {
@@ -141,6 +141,7 @@ export const CodeBuddyAuthPlugin: Plugin = async (input) => {
       const account = storage.account;
       const headers: Record<string, string> = {
         Authorization: `Bearer ${auth.accessToken}`,
+        'User-Agent': `CLI/${CODEBUDDY_CLI_VERSION} CodeBuddy/${CODEBUDDY_CLI_VERSION}`,
         'X-Domain': `${auth.domain}`,
         'X-User-Id': `${account.uid}`,
       }
