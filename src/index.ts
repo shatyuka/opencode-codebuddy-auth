@@ -37,27 +37,8 @@ export const CodeBuddyAuthPlugin: Plugin = async (input) => {
                 account,
               };
               await saveStorage(storage);
-
-              return {
-                url: '',
-                instructions: '',
-                method: 'auto',
-                async callback() {
-                  return {
-                    type: 'success',
-                    access: auth.accessToken,
-                    refresh: auth.refreshToken,
-                    expires: auth.expiresAt,
-                  }
-                }
-              }
             }
           }
-        }
-
-        for (const key in provider.models) {
-          const model = provider.models[key]!;
-          model.id
         }
 
         return {
