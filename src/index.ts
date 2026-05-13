@@ -42,7 +42,20 @@ export const CodeBuddyAuthPlugin: Plugin = async (input) => {
         }
 
         return {
-          apiKey: ''
+          apiKey: '',
+          fetch: async (input: string | URL | Request, init?: RequestInit) => {
+            const url = input.toString();
+            if (!url.endsWith('/chat/completions'))
+              return fetch(input, init);
+
+            if (init && init.headers) {
+              const headers = new Headers(init?.headers);
+              headers.set('user-agent', `CLI/${CODEBUDDY_CLI_VERSION} CodeBuddy/${CODEBUDDY_CLI_VERSION}`);
+              init.headers = headers;
+            }
+
+            return fetch(input, init);
+          }
         }
       },
       methods: [
@@ -122,7 +135,6 @@ export const CodeBuddyAuthPlugin: Plugin = async (input) => {
       const account = storage.account;
       const headers: Record<string, string> = {
         Authorization: `Bearer ${auth.accessToken}`,
-        'User-Agent': `CLI/${CODEBUDDY_CLI_VERSION} CodeBuddy/${CODEBUDDY_CLI_VERSION}`,
         'X-Domain': `${auth.domain}`,
         'X-User-Id': `${account.uid}`,
       }
